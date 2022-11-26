@@ -1,2 +1,4 @@
 # intelmq3-bots-example
-Este repositorio es para definir algún bot de ejemplo
+Just a No operation bot to use an example in DEMOS
+
+Just Clone this repo and link it to https://github.com/certat/intelmq-docker as described in DEVELOPER-GUIDE.md as my_bots.
