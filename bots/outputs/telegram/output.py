@@ -18,6 +18,8 @@ class TelegramOutputBot(OutputBot):
     token: str = None
     chat_id: str = None
     message: str = None
+    parse_mode: str = None
+    disable_web_page_preview: bool = False
 
     def init(self):
         self.bot = telebot.TeleBot(self.token, parse_mode=None)
@@ -25,7 +27,7 @@ class TelegramOutputBot(OutputBot):
 
     def process(self):
         event = self.receive_message()
-        self.bot.send_message(self.chat_id,  self.message.format(ev=event))
+        self.bot.send_message(self.chat_id,  self.message.format(ev=event), parse_mode=self.parse_mode, disable_web_page_preview=self.disable_web_page_preview)
         self.acknowledge_message()
 
 
