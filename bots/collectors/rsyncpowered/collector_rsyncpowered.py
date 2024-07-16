@@ -33,6 +33,7 @@ class RsyncPoweredCollectorBot(CollectorBot):
     extra_params: str = None
     private_key: str = None
     private_key_path: str = None
+    ssh_port: int = 22
     strict_host_key_checking: bool = False
     temp_directory: str = path.join(VAR_STATE_PATH, "rsync_collector")  # TODO: should be pathlib.Path
 
@@ -77,7 +78,7 @@ class RsyncPoweredCollectorBot(CollectorBot):
 
         if self.private_key_path:
             self.strict_host_key_checking_str = 'yes' if self.strict_host_key_checking else 'no'
-            self.extra_params += ['-e', f'ssh -i {self.private_key_path} -o StrictHostKeyChecking={self.strict_host_key_checking_str}']
+            self.extra_params += ['-e', f'ssh -i {self.private_key_path} -p {self.ssh_port} -o StrictHostKeyChecking={self.strict_host_key_checking_str}']
 
     def process(self):
         formatting = self.rsync_file_path_formatting
