@@ -55,7 +55,7 @@ class CTFdOutputBot(OutputBot):
         #    kwargs = {'json': event.to_dict(hierarchical=self.hierarchical_output)}
         #else:
         #    kwargs = {'data': event.to_dict(hierarchical=self.hierarchical_output)}
-        # kwargs={'data': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
+        # kwargs={'json': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
         # END TODO FIX this to send the correct data to the CTFd API
         
         self.logger.info(f'Sending data: {str(kwargs)}')
@@ -76,8 +76,9 @@ class CTFdOutputBot(OutputBot):
         if not req.ok:
             self.logger.debug("Error during message sending, response body: %r.",
                               req.text)
+            
         req.raise_for_status()
-        self.logger.debug('Sent message.')
+        self.logger.info(f'Sent message {req.text}')
         self.acknowledge_message()
 
 
