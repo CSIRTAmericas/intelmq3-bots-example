@@ -50,14 +50,7 @@ class CTFdOutputBot(OutputBot):
     def process(self):
         event = self.receive_message()
         self.logger.info(f'Recieving event: {str(event)}')
-        # BEGIN TODO FIX this to send the correct data to the CTFd API
-        # #if self.use_json:
-        #    kwargs = {'json': event.to_dict(hierarchical=self.hierarchical_output)}
-        #else:
-        #    kwargs = {'data': event.to_dict(hierarchical=self.hierarchical_output)}
-        # kwargs={'json': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
-        # END TODO FIX this to send the correct data to the CTFd API
-        
+        kwargs={'json': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
         self.logger.info(f'Sending data: {str(kwargs)}')
         timeoutretries = 0
         req = None
