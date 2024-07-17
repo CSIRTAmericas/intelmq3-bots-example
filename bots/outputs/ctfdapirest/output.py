@@ -23,7 +23,7 @@ class CTFdOutputBot(OutputBot):
     hierarchical_output: bool = False
     host: str = "https://ctfd-intelmq.taller.org/api/v1/challenges/attempt"
     use_json: bool = False
-    challenge_id = "extra.id"
+    challenge_id = "extra.challenge_id"
     challenge_submission = "extra.submission"
 
     _auth: Iterable[str] = None

@@ -25,7 +25,7 @@ class NoOpCollectorBot(CollectorBot):
             time.sleep(i)
             self.logger.info(f'{self.paso}{i}')
         report = self.new_report()
-        report.add("raw","bGEgbmFkYSBtaXNtYQ==")
+        report.add("raw","ZmFudGFzdGljIHRyYWluaW5nCg==")
         report.add("feed.url", "http://noop.url")
         self.send_message(report)
      
