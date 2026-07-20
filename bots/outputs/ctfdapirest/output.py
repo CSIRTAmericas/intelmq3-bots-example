@@ -19,12 +19,12 @@ class CTFdOutputBot(OutputBot):
     """Send events to a CTFD instance through HTTP POST"""
     auth_token_name: str = "Authorization"
     auth_token: str = None
-    auth_type = str = "http_header"
+    auth_type: str = "http_header"
     hierarchical_output: bool = False
     host: str = "https://ctfd-intelmq.taller.org/api/v1/challenges/attempt"
     use_json: bool = False
-    challenge_id = "extra.id"
-    challenge_submission = "extra.submission"
+    challenge_id: str = "change_me"
+    challenge_submission: str = "extra.submission"
 
     _auth: Iterable[str] = None
 
@@ -55,7 +55,7 @@ class CTFdOutputBot(OutputBot):
         #    kwargs = {'json': event.to_dict(hierarchical=self.hierarchical_output)}
         #else:
         #    kwargs = {'data': event.to_dict(hierarchical=self.hierarchical_output)}
-        # kwargs={'json': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
+        kwargs={'json': { 'challenge_id': int(event.get(self.challenge_id,0)),'submission':event.get(self.challenge_submission,'ERROR')} }
         # END TODO FIX this to send the correct data to the CTFd API
         
         self.logger.info(f'Sending data: {str(kwargs)}')
